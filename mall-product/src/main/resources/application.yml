@@ -1,0 +1,71 @@
+## 应用名称
+#spring.application.name: mall-product
+## 应用服务 WEB 访问端口
+#server.port: 10000
+#
+#spring:
+#  datasource:
+#    username: root
+#    password: root #todo 写自己的mysql 账号密码和地址
+#    url: jdbc:mysql://127.0.0.1:3306/mall_pms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    hikari:
+#      connection-timeout: 10000
+#      validation-timeout: 3000
+#      idle-timeout: 60000
+#      login-timeout: 5
+#      max-lifetime: 60000
+#      maximum-pool-size: 10
+#      minimum-idle: 5
+#      read-only: false
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848 #todo 写自己的nacos
+#  jackson:
+#    time-zone: GMT+8
+#    date-format: yyyy-MM-dd HH:mm:ss
+#  thymeleaf:
+#    cache: false
+#  redis:
+#    host: 127.0.0.1 #todo 写自己的redis地址
+#    port: 6379
+#    password:  #todo 写自己的redis密码，没有不写
+#  cache:
+#    type: redis
+#  session:
+#    store-type: redis
+#  mvc:
+#    date-format: yyyy-MM-dd HH:mm:ss
+#mybatis-plus:
+#  configuration:
+#    #数据库下划线和实体类驼峰统一
+#    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    global-config:
+#      db-config:
+#        id-type: auto
+#      banner: false
+#
+#  #告诉mp，sql映射文件的位置，默认值classpath*:/mapper/**/*.xml。
+#  #  classpath表示只引用现在模块的类路径。classpath*表示不止引用现在模块的类路径，还包括依赖jar包的类路径
+#  mapper-locations: classpath:/mapper/**/*.xml
+#ribbon:
+#  eager-load:
+#    enabled: true
+#logging:
+#  level:
+#    com.yeye.mall: info
+#mall:
+#  thread:
+#    core-size: 20
+#    max-size: 200
+#    keep-alive-time: 10
+#    time-unit: seconds
+#
+#feign:
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 60000
+#        readTimeout: 60000

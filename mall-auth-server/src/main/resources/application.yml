@@ -1,0 +1,26 @@
+# 应用名称
+#spring:
+#  application:
+#    name: mall-auth-server
+#  thymeleaf:
+#    cache: false
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848 #todo 写自己的nacos
+#  redis:
+#    host: 127.0.0.1 #todo 写自己的redis地址
+#    port: 6379
+#    password:  #todo 写自己的redis密码，没有不写
+#  session:
+#    store-type: redis
+#    timeout: 30m
+#server:
+#  port: 20000
+#
+#feign:
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 60000
+#        readTimeout: 60000

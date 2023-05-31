@@ -1,0 +1,158 @@
+1.检查maven仓库和变量配置，不然会报错
+2.启动时必须先编译common模块，否则无法识别公共模块的变量
+3.报错时必须先清缓存，再重新编译，启动
+
+
+#以下为host配置，可使用switchhost软件进行配置
+#my
+127.0.0.1 my-yeye.com
+127.0.0.1 mall-yeye.com
+127.0.0.1 search.mall-yeye.com
+127.0.0.1 item.mall-yeye.com
+127.0.0.1 auth.mall-yeye.com
+127.0.0.1 cart.mall-yeye.com
+127.0.0.1 order.mall-yeye.com
+127.0.0.1 member.mall-yeye.com
+127.0.0.1 seckill.mall-yeye.com
+
+
+
+//@RequiresPermissions[a-zA-Z\p{Punct}]{5,100}
+
+商品的es索引
+PUT product
+{
+    "mappings" : {
+      "properties" : {
+        "attrs" : {
+          "type" : "nested",
+          "properties" : {
+            "attrId" : {
+              "type" : "long"
+            },
+            "attrName" : {
+              "type" : "keyword"
+            },
+            "attrValue" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "brandId" : {
+          "type" : "long"
+        },
+        "brandImg" : {
+          "type" : "keyword"
+        },
+        "brandName" : {
+          "type" : "keyword"
+        },
+        "catalogId" : {
+          "type" : "long"
+        },
+        "catalogName" : {
+          "type" : "keyword"
+        },
+        "hasStock" : {
+          "type" : "boolean"
+        },
+        "hotScore" : {
+          "type" : "long"
+        },
+        "saleCount" : {
+          "type" : "long"
+        },
+        "skuId" : {
+          "type" : "long"
+        },
+        "skuImg" : {
+          "type" : "keyword"
+        },
+        "skuPrice" : {
+          "type" : "keyword"
+        },
+        "skuTitle" : {
+          "type" : "text",
+          "analyzer" : "ik_smart"
+        },
+        "spuId" : {
+          "type" : "keyword"
+        }
+
+    }
+  }
+}
+
+
+//nginx.config
+
+#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+
+    upstream mall{
+        server 127.0.0.1:88;
+    }
+    include servers/*;
+}
+
+
+mall.config
+server {
+    listen       80;
+    server_name  *.mall-yeye.com,mall-yeye.com;
+
+    #charset koi8-r;
+
+    #access_log  logs/host.access.log  main;
+    location /static {
+        root  html;
+    }
+
+    location / {
+        proxy_set_header Host $host;
+        proxy_pass  http://mall;
+    }
+
+    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   html;
+    }
+
+
+}
+
+

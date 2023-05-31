@@ -1,0 +1,19 @@
+# 应用名称
+spring.application.name: mall-search
+# 应用服务 WEB 访问端口
+server.port: 12000
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 #todo 写自己的nacos
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    cache: false
+  redis:
+    host: 127.0.0.1 #todo 写自己的redis地址
+    port: 6379
+    password:  #todo 写自己的redis密码，没有不写
+  session:
+    store-type: redis

@@ -1,0 +1,38 @@
+#coupon:
+#  user:
+#    name: 张三
+#    age: 20
+#
+#
+#
+## 应用名称
+#spring.application.name: mall-coupon
+## 应用服务 WEB 访问端口
+#server.port: 7000
+#
+#spring:
+#  datasource:
+#    username: root
+#    password: root #todo 写自己的mysql 账号密码和地址
+#    url: jdbc:mysql://127.0.0.1:3306/mall_sms?useUniapplication.ymlcode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848 #todo 写自己的nacos
+#
+#
+#mybatis-plus:
+#  configuration:
+#    #数据库下划线和实体类驼峰统一
+#    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    global-config:
+#      db-config:
+#        id-type: auto
+#      banner: false
+#
+#  #告诉mp，sql映射文件的位置，默认值classpath*:/mapper/**/*.xml。
+#  #  classpath表示只引用现在模块的类路径。classpath*表示不止引用现在模块的类路径，还包括依赖jar包的类路径
+#  mapper-locations: classpath:/mapper/**/*.xml
+#

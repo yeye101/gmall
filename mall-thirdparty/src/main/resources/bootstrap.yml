@@ -1,0 +1,26 @@
+# 配置nacos
+spring:
+  application:
+    name: mall-thirdparty
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848 #todo 写自己的nacos
+        file-extension: yaml # 设置为yaml格式
+        namespace: d07fdbc0-abcd-4269-97ce-5a1f3646fab6
+        ext-config:
+          - data-id: oss.yml
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: sms.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+        group: DEFAULT_GROUP
+#          - data-id: mybatis.yml
+#            group: dev
+#            refresh: true
+#          - data-id: other.yml
+#            group: dev
+#            refresh: true
+#        #group: prod 配置分组
+

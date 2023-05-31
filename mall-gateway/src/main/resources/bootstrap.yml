@@ -1,0 +1,21 @@
+# 配置nacos
+spring:
+  application:
+    name: mall-gateway
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848 #todo 写自己的nacos
+        file-extension: yaml # 设置为yaml格式
+        namespace: 5954d4e5-58ec-49c9-9b36-c68fc7602980
+#        ext-config:
+#          - data-id: datasource.yml
+#            group: dev
+#            refresh: true
+#          - data-id: mybatis.yml
+#            group: dev
+#            refresh: true
+#          - data-id: other.yml
+#            group: dev
+#            refresh: true
+#        #group: prod 配置分组

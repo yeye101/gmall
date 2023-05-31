@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/index/css/swiper-3.4.2.min.css">
+    <link rel="stylesheet" href="/static/index/css/GL.css">
+    <script src="/static/search/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/index/js/swiper-3.4.2.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/index/js/swiper-3.4.2.min.js"></script>
+
+</head>
+
+<body>
+<header>
+    <!--头部-->
+    <div class="header_head">
+        <div class="header_head_box">
+            <a href="/#" class="img"><img style="margin-top: 50px" src="/static/logo.png"/></a>
+            <ul>
+                <li>
+                    <a href="http://auth.mall-yeye.com/login.html"
+                       th:if="${session.loginUser == null}">
+                        你好，请登录</a>
+                    <a href="http://member.mall-yeye.com/memberInfo.html"
+                       th:if="${session.loginUser != null}"
+                       th:text="${'你好，'+session.loginUser.nickname}">
+                        你好，请登录</a>
+                </li>
+
+                <li>
+                    <a href="http://auth.mall-yeye.com/reg.html" class="li_2"
+                       th:if="${session.loginUser == null}">免费注册</a>
+                </li>
+                <span>|</span>
+                <li>
+                    <a href="http://member.mall-yeye.com/memberOrderList.html">我的订单</a>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+    <!--搜索导航-->
+    <div class="header_sous">
+        <div class="header_form">
+            <input id="searchText" type="text" placeholder=""/>
+            <a onclick="searchInfo()"><img src="/static/index/img/img_09.png"/></a>
+        </div>
+        <div class="header_ico">
+            <div class="header_gw">
+                <img src="/static/index/img/img_15.png"/>
+                <span><a href="http://cart.mall-yeye.com/cart.html">我的购物车</a></span>
+                <span>0</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/#">秒杀</a>
+                </li>
+                <li>
+                    <a href="/#">优惠券</a>
+                </li>
+                <li>
+                    <a href="/#">闪购</a>
+                </li>
+                <li>
+                    <a href="/#">拍卖</a>
+                </li>
+            </ul>
+            <div class="spacer">|</div>
+
+        </nav>
+
+    </div>
+    <!--轮播主体内容-->
+    <div class="header_main">
+        <div class="header_banner">
+            <div class="header_main_left">
+                <ul>
+                    <li th:each=" category:${categorys}">
+                        <a href="/#" class="header_main_left_a" th:attr="ctg-data=${category.catId}"><b
+                                th:text=${category.name}>家用电器</b></a>
+                    </li>
+                </ul>
+
+            </div>
+
+
+            <div class="header_main_center">
+                <div class="swiper-container swiper1">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide ">
+                            <a href="/#">
+                                <img src="/static/imges/cms_1.jpg"/>
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide ">
+                            <a href="/#">
+                                <img src="/static/imges/cms_2.jpg"/></a>
+                        </div>
+
+                        <div class="swiper-slide ">
+                            <a href="/#">
+                                <img src="/static/imges/cms_6.jpg"/></a>
+                        </div>
+                        <div class="swiper-slide ">
+                            <a href="/#">
+                                <img src="/static/imges/cms_7.jpg"/></a>
+                        </div>
+                        <div class="swiper-slide ">
+                            <a href="/#">
+                                <img src="/static/imges/cms_8.jpg"/></a>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next swiper-button-white"></div>
+                    <div class="swiper-button-prev swiper-button-white"></div>
+                </div>
+                <div class="header_main_center_b">
+                    <a href="/#"><img src="/static/imges/cms_11.jpg" style="width: 380px"/></a>
+                    <a href="/#"><img src="/static/imges/cms_12.jpg" style="width: 380px ;float: right"/></a>
+                </div>
+            </div>
+            <div class="header_main_right">
+                <div class="header_main_right_user">
+                    <div class="user_info">
+                        <div class="user_info_tou">
+                            <a href="/#"><img class="" src="/static/index/img/touxiang.png"
+                                              th:src="${session.loginUser == null ?
+                                              '/static/index/img/touxiang.png' :(session.loginUser.header == null ?
+                                               '/static/index/img/touxiang.png':session.loginUser.header)}"></a>
+                        </div>
+                        <div class="user_info_show">
+                            <p class=""
+                               th:text="${session.loginUser == null ? '你好，请登录':'你好，'+session.loginUser.nickname}">Hi,
+                                欢迎来到!</p>
+                            <p>
+                                <a href="/#" th:if="${session.loginUser == null}">登录</a>
+                                <a href="/#" th:if="${session.loginUser == null}">注册</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="user_info_hide">
+                        <a href="/#">新人福利</a>
+                        <a href="/#">PLUS会员</a>
+                    </div>
+                </div>
+                <div class="header_main_right_new">
+                    <div class="header_new">
+                        <div class="header_new_t">
+                            <p class="active">
+                                <a href="/#">促销</a>
+                            </p>
+                            <p>
+                                <a href="/#">公告</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="header_main_right_ser">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="section_second">
+    <!-- 第一层 -->
+    <div class="section_second_header">
+        <p class="section_second_header_img"></p>
+        <div class="section_second_header_left">
+            <p></p>
+            <span class="">秒杀活动</span>
+            <span>秒杀活动，价格全场最低，快来抢购吧</span>
+            <span>
+        </span>
+        </div>
+        <div class="section_second_header_right">
+            <p>当前场次</p>
+            <p id="miaoShaTime"></p>
+            <p>后结束</p>
+        </div>
+    </div>
+    <div class="section_second_list">
+        <div class="swiper-container swiper_section_second_list_left">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <ul id="seckillSkuContent">
+
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <ul>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="swiper-button-prev second_list">
+                <p></p>
+            </div>
+            <div class="swiper-button-next second_list">
+                <p></p>
+            </div>
+        </div>
+        <ul class="section_second_list_right">
+            <li>
+                <img src="/static/imges/cms14.jpg" alt="">
+            </li>
+            <li>
+                <img src="/static/index/img/section_second_list_right_img.png" alt="">
+            </li>
+            <div class="section_second_list_right_button">
+                <p class="section_second_list_right_button_active"></p>
+                <p></p>
+            </div>
+        </ul>
+    </div>
+
+
+    <div data-v-0a7ea174="" class="phone">
+        <div data-v-0a7ea174="" class="box-hd">
+            <div data-v-0a7ea174="" class="title">手机</div>
+        </div>
+        <div data-v-0a7ea174="" class="box-bd">
+            <div data-v-0a7ea174="" class="promo-list">
+                <a data-v-0a7ea174="" href="#/" class="router-link-exact-active router-link-active"><img
+                        data-v-0a7ea174="" src="/static/imges/phone.png">
+                </a>
+            </div>
+            <div data-v-0a7ea174="" class="list">
+                <div data-v-486cc919="" data-v-0a7ea174="" id="myList" class="myList">
+                    <ul data-v-486cc919="" id="phoneSkus">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div data-v-0a7ea174="" class="phone">
+        <div data-v-0a7ea174="" class="box-hd">
+            <div data-v-0a7ea174="" class="title">手机配件</div>
+        </div>
+        <div data-v-0a7ea174="" class="box-bd">
+            <div data-v-0a7ea174="" class="promo-list">
+                <a data-v-0a7ea174="" href="#/" class="router-link-exact-active router-link-active"><img
+                        data-v-0a7ea174="" src="/static/imges/phone.png">
+                </a>
+            </div>
+            <div data-v-0a7ea174="" class="list">
+                <div data-v-486cc919="" data-v-0a7ea174=""  class="myList">
+                    <ul data-v-486cc919="" id="phoneOthSkus">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="footer">
+    <div class="ng-promise-box">
+        <div class="ng-promise">
+            <p class="text">
+                <a href="javascript:;" class="icon1">7天无理由退换货</a>
+                <a href="javascript:;" class="icon2">满99元全场免邮</a>
+                <a href="javascript:;" class="icon3" style="margin-right: 0px;">100%品质保证</a>
+            </p>
+        </div>
+    </div>
+    <div class="mod_help">
+        <p>
+            <a href="http://mall-yeye.com" class="router-link-exact-active router-link-active">首页</a>
+            <span>|</span>
+            <a href="http://search.mall-yeye.com/list.html" class="">全部商品</a>
+            <span>|</span>
+            <a href="http://mall-yeye.com" class="">官网</a>
+        </p>
+        <p class="coty">商城版权归shopee所有 © 2022-2023</p></div>
+</div>
+
+</body>
+<script type="text/javascript">
+    function searchInfo() {
+        var keyword = $("#searchText").val()
+        window.location.href = "http://search.mall-yeye.com/list.html?keyword=" + keyword;
+    }
+
+    /**
+     * 获取秒杀商品
+     */
+    $.get("http://seckill.mall-yeye.com/currentSeckillSkus", function (data) {
+        if (data.code != 0) {
+            alert(data.msg);
+        }
+        data.data.forEach(function (item) {
+            $("<li onclick='toDetail(" + item.skuId + ")'></li>")
+                .append($("<img style='width: 130px; height: 130px' src='" + item.skuInfoVo.skuDefaultImg + "' />"))
+                .append($("<p>" + item.skuInfoVo.skuTitle + "</p>"))
+                .append($("<span>" + item.seckillPrice + "</span>"))
+                .append($("<s>" + item.skuInfoVo.price + "</s>"))
+                .appendTo("#seckillSkuContent");
+        })
+
+        if (data.data != null) {
+            $("<p> </p>")
+                .append($("<p>" + (new Date(data.data[0].startTime)).Format("yyyy-MM-dd hh:mm:ss") + "至"
+                    + (new Date(data.data[0].endTime)).Format("yyyy-MM-dd hh:mm:ss") + "</p>"))
+                .appendTo("#miaoShaTime");
+        }
+
+
+    });
+
+    /**
+     * 获取首页推荐商品
+     <li data-v-486cc919="">
+     <a data-v-486cc919="" href="#/goods/details?productID=1" class="">
+     <img data-v-486cc919="" src="/static/imgesRedmi-k30.png"        alt="">
+     <h2 data-v-486cc919="">Redmi K30</h2>
+     <h3 data-v-486cc919="">120Hz流速屏，全速热爱</h3>
+     <p data-v-486cc919="">
+     <span data-v-486cc919="">1599元</span>
+     <span data-v-486cc919="" class="del">2000元</span>
+     </p>
+     </a>
+     </li>
+
+     <li data-v-486cc919="" id="more" style="">
+     <a data-v-486cc919="" href="#/goods?categoryID=1" class="">
+     浏览更多
+     <i data-v-486cc919="" class="el-icon-d-arrow-right">
+     </i>
+     </a>
+     </li>
+     http://search.mall-yeye.com/list.html?catalog3Id=225
+     */
+    $.post("http://search.mall-yeye.com/search/product/225", function (data) {
+        if (data.code != 0) {
+            alert(data.msg);
+        }
+        data.data.forEach(function (item) {
+
+            let a = "";
+            if (item.attrs != null) {
+                item.attrs.forEach(function (da) {
+                    a = a + da.attrValue.toString();
+                })
+            }
+
+            $("<li data-v-486cc919=\"\" ></li>")
+                .append($("<a data-v-486cc919=\"\"  class=\"\" href='http://item.mall-yeye.com/" + item.skuId + ".html' >  </a>")
+                    .append($("<img data-v-486cc919=\"\"  src='" + item.skuImg + "' />"))
+                    .append($("<h2 data-v-486cc919=\"\">" + item.skuTitle + "</h2>"))
+                    .append($("<h3 data-v-486cc919=\"\">" + a + "</h3>"))
+                    .append($("<p data-v-486cc919=\"\" > " +
+                        "<span data-v-486cc919=\"\">" + item.skuPrice + "元" + "</span>  " +
+                        "<span data-v-486cc919=\"\" class=\"del\" >" + (item.skuPrice + 2000) + "元" + "</span>  " +
+                        "</p>")
+                    )
+                )
+                .appendTo("#phoneSkus");
+        })
+
+        $("<li data-v-486cc919=\"\" id=\"more\"  style=\"\" ></li>")
+            .append($("<a data-v-486cc919=\"\" class=\"\" href='http://search.mall-yeye.com/list.html?catalog3Id=225' > " + "浏览更多" + " </a>")
+                .append($("<i data-v-486cc919=\"\"  class=\"el-icon-d-arrow-right\" />"))
+            )
+            .appendTo("#phoneSkus");
+
+
+    });
+    $.post("http://search.mall-yeye.com/search/product/226", function (data) {
+        if (data.code != 0) {
+            alert(data.msg);
+        }
+        data.data.forEach(function (item) {
+
+            let a = "";
+            if (item.attrs != null) {
+                item.attrs.forEach(function (da) {
+                    a = a + da.attrValue.toString()+" ";
+                })
+            }
+
+            $("<li data-v-486cc919=\"\" ></li>")
+                .append($("<a data-v-486cc919=\"\"  class=\"\" href='http://item.mall-yeye.com/" + item.skuId + ".html' >  </a>")
+                    .append($("<img data-v-486cc919=\"\"  src='" + item.skuImg + "' />"))
+                    .append($("<h2 data-v-486cc919=\"\">" + item.skuTitle + "</h2>"))
+                    .append($("<h3 data-v-486cc919=\"\">" + a + "</h3>"))
+                    .append($("<p data-v-486cc919=\"\" > " +
+                        "<span data-v-486cc919=\"\">" + item.skuPrice + "元" + "</span>  " +
+                        "<span data-v-486cc919=\"\" class=\"del\" >" + (item.skuPrice + 2000) + "元" + "</span>  " +
+                        "</p>")
+                    )
+                )
+                .appendTo("#phoneOthSkus");
+        })
+
+        $("<li data-v-486cc919=\"\" id=\"more\"  style=\"\" ></li>")
+            .append($("<a data-v-486cc919=\"\" class=\"\" href='http://search.mall-yeye.com/list.html?catalog3Id=226' > " + "浏览更多" + " </a>")
+                .append($("<i data-v-486cc919=\"\"  class=\"el-icon-d-arrow-right\" />"))
+            )
+            .appendTo("#phoneOthSkus");
+
+
+    });
+
+
+
+
+    Date.prototype.Format = function (fmt) { //author: meizz
+
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+
+    }
+
+    function toDetail(skuId) {
+        location.href = "http://item.mall-yeye.com/" + skuId + ".html";
+    }
+
+</script>
+<script type="text/javascript" src="/static/index/js/text.js"></script>
+<script type="text/javascript" src="/static/index/js/header.js"></script>
+<script type="text/javascript" src="/static/index/js/secend.js"></script>
+<script type="text/javascript" src="/static/index/js/zz.js"></script>
+<script type="text/javascript" src="/static/index/js/index.js"></script>
+<script type="text/javascript" src="/static/index/js/left,top.js"></script>
+<script type="text/javascript" src="/static/index/js/catalogLoader.js"></script>
+</html>

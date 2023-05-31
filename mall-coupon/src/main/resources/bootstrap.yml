@@ -1,0 +1,22 @@
+# 配置nacos
+spring:
+  application:
+    name: mall-coupon
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848 #todo 写自己的nacos
+        file-extension: yaml # 设置为yaml格式
+        namespace: 4bc21cec-5644-44f3-85b1-40d68008a206
+        ext-config:
+          - data-id: datasource.yml
+            group: dev
+            refresh: true
+          - data-id: mybatis.yml
+            group: dev
+            refresh: true
+          - data-id: other.yml
+            group: dev
+            refresh: true
+        #group: prod 配置分组
+        group: DEFAULT_GROUP

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的个人信息</title>
+    <link rel="stylesheet" href="/static/member/css/index.css">
+    <style media="screen">
+        * {
+            font-family: "微软雅黑";
+        }
+    </style>
+</head>
+
+<body>
+<div id="nav">
+    <nav>
+
+        <div class="myjd">
+            <h3><a href="http://mall-yeye.com" style="color: white">我的商城</a></h3>
+            <button onclick="location.href='http://mall-yeye.com'">返回商城首页</button>
+        </div>
+        <ul class="nav_ul">
+            <li><a href="http://mall-yeye.com" style="color: white">首页</a></li>
+            <li class="li hover">账户设置<i class="ul_i"></i>
+                <ol>
+                    <li>个人信息</li>
+
+                </ol>
+            </li>
+            <input id="userId" class="hide" th:if="${session.loginUser != null}"
+                   th:value="${session.loginUser.id}">
+            <li class="li hover" onclick="exit()">退出登录</li>
+        </ul>
+        <div class="right">
+            <div class="btn">
+                <input type="text" placeholder="">
+                <button>搜索</button>
+            </div>
+            <ul class="shop">
+                <li><i class="shop_che"></i>
+                    <a href="http://cart.mall-yeye.com/cart.html">我的购物车 </a>
+                </li>
+            </ul>
+        </div>
+        <div style="clear:both;"></div>
+    </nav>
+
+</div>
+<div style="clear:both;"></div>
+<div id="big">
+    <div id="bigLeft">
+        <ul>
+            <h5>账户设置</h5>
+            <li style="color:#E4393C;font-weight:800;">个人中心</li>
+
+        </ul>
+
+    </div>
+    <div id="bigRight">
+        <div class="myOrder">
+            <p>个人信息</p>
+        </div>
+
+        <div class="allBig">
+
+            <form action="/member/modify" method="post" class="one">
+
+                <div class="register-box">
+                    <label class="username_label">
+                        <span>用 户 昵 称</span>
+                        <input name="nickName" maxlength="20" type="text" placeholder="您的用户昵称"
+                               th:value="${member.getNickname()}">
+                    </label>
+                </div>
+                <div class="register-box">
+                    <label class="other_label">
+                        <span>生 日</span>
+                        <input name="birth" maxlength="20" type="date" placeholder="生 日"
+                               th:value="${#dates.format(member.getBirth(), 'yyyy-MM-dd')}">
+                    </label>
+                </div>
+                <div class="register-box">
+                    <label class="other_label">
+                        <span>个 性 签 名</span>
+                        <input name="sign" maxlength="20" type="text" placeholder="个 性 签 名"
+                               th:value="${member.getSign()}">
+                    </label>
+                </div>
+
+                <div class="arguement">
+                    <div class="submit_btn">
+                        <button type="submit" id="submit_btn" onclick="refresh()">修 改</button>
+                    </div>
+                </div>
+
+            </form>
+
+
+            <div style="clear:both;"></div>
+        </div>
+
+
+        <div class="myOrder" style="margin-top: 20px">
+            <p>不可修改个人信息</p>
+        </div>
+
+        <div class="allBig">
+
+            <div class="one">
+
+
+                <div class="register-box">
+                    <label class="username_label">
+                        <span>用 户 昵 称</span>
+                        <input th:value="${member.getUsername()}" disabled>
+                    </label>
+                </div>
+                <div class="register-box">
+                    <label class="other_label">
+                        <span>电 话</span>
+                        <input th:value="${member.getMobile()}" disabled>
+                    </label>
+                </div>
+                <div class="register-box">
+                    <label class="other_label">
+                        <span>用 户 积 分</span>
+                        <input th:value="${member.getIntegration()}" disabled>
+                    </label>
+                </div>
+                <div class="register-box">
+                    <label class="other_label">
+                        <span>用 户 成 长 值</span>
+                        <input th:value="${member.getGrowth()}" disabled>
+                    </label>
+                </div>
+            </div>
+
+
+        </div>
+        <div style="clear:both;"></div>
+
+
+        <div class="myOrder" style="margin-top: 20px">
+            <p>收货人信息</p>
+            <p onclick="addAddress()" style="color: red">新增收货地址</p>
+
+        </div>
+        <div class="allBig">
+
+            <div class="one">
+
+
+                <div class="register-box" th:if="${member.getAddressVos() != null}"
+                     th:each="addr:${member.getAddressVos()}">
+                    <label class="username_label">
+                        <span style="width: 200px">名字：[[${addr.getName()}]]</span>
+                        <input style="width: 500px"
+                                th:value="'地址为'+'  '+ ${addr.getProvince()}+'  '+ ${addr.getDetailAddress()} +'  '+ ${addr.getPhone()}" disabled>
+                    </label>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div style="clear:both;">
+
+        </div>
+    </div>
+
+    <div class="modal-alert hide">
+        <div class="cen"></div>
+        <div class="modal-alert-content">
+            新增地址
+            <div class="close">×</div>
+            <div class="register-box">
+                <label class="name_label">
+                    <span>用 户 昵 称</span>
+                    <input id="nickName" maxlength="20" type="text" placeholder="用 户 昵 称 长度1-20之间">
+                </label>
+            </div>
+            <div class="register-box">
+                <label class="name_label">
+                    <span>用 户 电 话</span>
+                    <input id="phone" maxlength="20" type="text" placeholder="用 户 电 话 11位">
+                </label>
+            </div>
+            <div class="register-box">
+                <label class="name_label">
+                    <span>省    份</span>
+                    <input id="province" maxlength="20" type="text" placeholder="省    份 长度1-20之间">
+                </label>
+            </div>
+            <div class="register-box">
+                <label class="name_label">
+                    <span>详细地址信息</span>
+                    <input id="addressDetail" maxlength="20" type="text" placeholder="详细地址信息 长度1-20之间">
+                </label>
+            </div>
+            <div class="dialog-footer">
+                <input type="button" class="btn" id="confirm" value="确认"/>
+                <input type="button" class="btn ml50" id="cancel" value="取消"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+
+
+    </div>
+</div>
+</body>
+
+<script src="/static/member/js/jquery-3.1.1.min.js"></script>
+<script src="/static/member/js/index.js"></script>
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+<script type="text/javascript">
+
+    function exit() {
+        $.removeCookie("SESSIONID", {domain: ".mall-yeye.com", path: "/"}); //path为指定路径，直接删除该路径下的cookie
+        location.href = "http://mall-yeye.com";
+    }
+
+    function refresh() {
+        location.href = "http://member.mall-yeye.com/memberInfo.html";
+    }
+
+    function addAddress() {
+        $('.modal-alert').removeClass('hide').addClass('show')
+    }
+
+    $('.cen').click(function () {
+        $('.modal-alert').addClass('hide')
+    })
+    $('.close').click(function () {
+        $('.modal-alert').addClass('hide')
+    })
+    // 确定按钮
+    $('#confirm').click(function () {
+        $('.modal-alert').addClass('hide')
+        yesCallback();
+    });
+    // 取消按钮
+    $('#cancel').click(function () {
+        $('.modal-alert').addClass('hide')
+        // noCallback();
+    });
+
+    function yesCallback() {
+
+
+        let data = {
+            userId: $('#userId').val(),
+            name: $('#nickName').val(),
+            phone: $('#phone').val(),
+            province: $('#province').val(),
+            address: $('#addressDetail').val()
+        };
+        $.ajax({
+            url: "http://localhost:88/api/member/address/save",
+            dataType: "json",
+            type: "post",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify(data),
+            success: function (res) {
+                console.log(res);
+                location.reload();
+
+            },
+            error: function (res) {
+                console.log(res);
+                alert("参数格式不正确");
+            },
+        });
+
+
+    }
+
+</script>
+
+
+</html>

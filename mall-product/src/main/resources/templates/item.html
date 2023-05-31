@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/static/item/scss/shop.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/item/scss/jd.css"/>
+    <link rel="stylesheet" href="/static/item/scss/header.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/item/bootstrap/css/bootstrap.css"/>
+</head>
+<body>
+<div id="max">
+    <header>
+        <!--品牌官方网站-->
+        <div class="min">
+            <ul class="header_ul_left">
+                <li class="glyphicon glyphicon-home"><a href="/index.html" class="aa">首页</a></li>
+                </li>
+            </ul>
+            <ul class="header_ul_right">
+                <li style="border: 0;">
+                    <a href="http://auth.mall-yeye.com/login.html"
+                       th:if="${session.loginUser == null}">
+                        你好，请登录</a>
+                    <a href="http://member.mall-yeye.com/memberInfo.html"
+                       style="width: 80px"
+                       th:if="${session.loginUser != null}"
+                       th:text="${session.loginUser.nickname}">
+                        你好，请登录</a>
+                </li>
+                <li><a href="http://auth.mall-yeye.com/reg.html" style="color: red;"
+                       th:if="${session.loginUser == null}">
+                    免费注册
+                </a> |
+                </li>
+                <li><a href="http://member.mall-yeye.com/memberOrderList.html" class=" aa">
+                    我的订单
+                </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <nav>
+        <div class="nav_min">
+            <div class="nav_top">
+                <div class="nav_top_one"><a href="http://mall-yeye.com/"><img src="/static/logo.png"/></a></div>
+                <div class="nav_top_two"><input type="text"/>
+                    <button>搜索</button>
+                </div>
+                <div class="nav_top_three"><a href="http://cart.mall-yeye.com/cart.html">我的购物车</a><span
+                        class="glyphicon glyphicon-shopping-cart"></span>
+                </div>
+        </div>
+    </nav>
+
+</div>
+
+
+<div class="crumb-wrap">
+    <div class="w">
+        <div class="crumb">
+            <div class="crumb-item">
+                <a href="">手机</a>
+            </div>
+            <div class="crumb-item sep">></div>
+            <div class="crumb-item">
+                <a href="">手机</a>
+            </div>
+        </div>
+        <div class="contact">
+            <ul class="contact-ul">
+                <li>
+                    <a href="">
+                        <img src="/static/item/img/f5831b9848b32440b381bcd30a3d96c7.png" alt=""/> 联系供应商
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="Shop">
+    <div class="box">
+        <div class="box-one ">
+            <div class="boxx">
+                <div class="imgbox">
+                    <div class="probox">
+                        <img class="img1" alt="" th:src="${item.getInfo().getSkuDefaultImg()}">
+                        <div class="hoverbox"></div>
+                    </div>
+                    <div class="showbox">
+                        <img class="img1" alt="" th:src="${item.getInfo().getSkuDefaultImg()}">
+                    </div>
+                </div>
+
+                <div class="box-lh">
+
+                    <div class="box-lh-one">
+                        <ul>
+                            <li th:each="img:${item.getImages()}" th:if="${!#strings.isEmpty(img.getImgUrl())}"><img
+                                    th:src="${img.getImgUrl()}"/></li>
+                        </ul>
+                    </div>
+                    <div id="left">
+                        <
+                    </div>
+                    <div id="right">
+                        >
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="box-two">
+                <div class="box-name" th:text="${item.getInfo().getSkuTitle()}">
+                    华为 HUAWEI Mate 10 6GB+128GB 亮黑色 移动联通电信4G手机 双卡双待
+                </div>
+                <div class="box-hide" th:text="${item.getInfo().getSkuSubtitle()}">预订用户预计11月30日左右陆续发货！麒麟970芯片！AI智能拍照！
+                </div>
+                <div class="box-yuyue">
+                    <div class="yuyue-one">
+                        <img src="/static/item/img/7270ffc3baecdd448958f9f5e69cf60f.png" alt=""/> 预约抢购
+                    </div>
+                    <div class="yuyue-two">
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+                <div class="box-summary clear">
+                    <ul>
+                        <li>商城价</li>
+                        <li>
+                            <span>￥</span>
+                            <span th:text="${#numbers.formatDecimal(item.getInfo().getPrice(),3,2)}">4499.00</span>
+                        </li>
+                        <li style="color: red" th:if="${item.seckillInfoVo!=null}">
+                            <span th:if="${#dates.createNow().getTime() < item.seckillInfoVo.startTime}">
+                                商品将会在[[${#dates.format(new java.util.Date(item.seckillInfoVo.startTime),"yyyy-MM-dd HH:mm:ss")}]]进行秒杀
+                            </span>
+
+                            <span style="font-size: x-large"
+                                  th:if="${#dates.createNow().getTime() >= item.seckillInfoVo.startTime && #dates.createNow().getTime() <= item.seckillInfoVo.endTime}">
+                                秒杀价  ￥[[${#numbers.formatDecimal(item.seckillInfoVo.seckillPrice,1,2)}]]
+                            </span>
+                        </li>
+                        <li>
+                            <a href="">
+                                预约说明
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="box-stock">
+                    <ul class="box-ul">
+                        <li>配送至</li>
+                        <li class="box-stock-li">
+                            <div class="box-stock-one">
+                                北京朝阳区管庄
+                                <img src="/static/item/img/4a79b87a68623d4e8a73aff3e25fa99b.png" alt="" class="img"/>
+                            </div>
+                            <div class="box-stock-two">
+                                <dl>
+                                    <dt>
+                                        <a>选择新地址</a>
+                                        <img src="/static/item/img/4a79b87a68623d4e8a73aff3e25fa99b.png" alt=""
+                                             class="box-stock-two-img"/>
+                                    </dt>
+                                    <dd>
+                                        <div class="box-stock-dd">
+                                            <div class="box-stock-top">
+                                                <div class="box-stock-div">北京</div>
+                                                <div class="box-stock-div">朝阳区</div>
+                                                <div class="box-stock-div">管庄</div>
+                                            </div>
+                                        </div>
+                                    </dd>
+                                </dl>
+
+                            </div>
+
+                        </li>
+                        <li>
+                            <span style="color: red" th:text="${item.getHasStock() ? '有货':'无货，此商品暂时售完'}">无货</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="box-attr-3">
+                    <div class="box-attr clear" th:each="saleAttr:${item.getSaleAttrsVo()}">
+                        <dl>
+                            <dt th:text="|选择${saleAttr.getAttrName()}|">选择颜色</dt>
+                            <dd th:each="val:${saleAttr.getAttrValues()}">
+                                <a th:attr="skus= ${val.getSkuIds()}
+                                   , class=${#lists.contains(#strings.listSplit(val.getSkuIds(),',')
+                                   , item.getInfo().getSkuId().toString()) ? 'sku_attr_val checked': 'sku_attr_val '}">
+                                    [[${val.attrValues}]]
+                                </a>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <div class="box-btns clear">
+                    <div class="box-btns-one">
+                        <input type="text" name="" id="numberInput" value="1"/>
+                        <div class="box-btns-one1">
+                            <div>
+                                <button id="jia">
+                                    +
+                                </button>
+                            </div>
+                            <div>
+                                <button id="jian">
+                                    -
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-btns-two">
+                        <a href="" id="seckillA"
+                           th:attr="skuId=${item.getInfo().getSkuId()}
+                        ,sessionId=${item.seckillInfoVo.getPromotionSessionId()}
+                        ,randomCode=${item.seckillInfoVo.randomCode}"
+                           th:if="${ item.seckillInfoVo != null &&
+                           (#dates.createNow().getTime() >= item.seckillInfoVo.startTime
+                           && #dates.createNow().getTime() <= item.seckillInfoVo.endTime)}">
+                            立即抢购
+                        </a>
+                        <a href="" id="addToCartA" th:attr="skuId=${item.getInfo().getSkuId()}"
+                           th:if="${item.seckillInfoVo == null ||
+                           (#dates.createNow().getTime() <= item.seckillInfoVo.startTime
+                           || #dates.createNow().getTime() >= item.seckillInfoVo.endTime)}">
+                            加入购物车
+                        </a>
+
+                    </div>
+                    <div class="box-btns-three">
+                        <img src="/static/item/img/e4ed3606843f664591ff1f68f7fda12d.png" alt=""/> 分享
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="ShopXiangqing">
+        <!--商品介绍-->
+        <div class="allquanbushop">
+            <ul class="shopjieshao">
+                <li class="jieshoa" style="background: #e4393c;">
+                    <a style="color: white;">商品介绍</a>
+                </li>
+                <li class="baozhuang">
+                    <a>规格与包装</a>
+                </li>
+            </ul>
+
+            <ul class="shopjieshaos posi" style="display: none;">
+                <li class="jieshoa" style="background: #e4393c;">
+                    <a style="color: white;">商品介绍</a>
+                </li>
+                <li class="baozhuang">
+                    <a>规格与包装</a>
+                </li>
+            </ul>
+
+            <!--商品详情-->
+            <div class="huawei">
+                <ul class="xuanxiangka">
+                    <li class="jieshoa actives" id="li1">
+                        <div class="shanpinsssss">
+
+                            <div class="guiGebox guiGebox1">
+                                <div class="guiGe" th:each="group:${item.getGroupVos()}">
+                                    <h3 th:text="${group.getGroupName()}">主体</h3>
+                                    <dl th:each="attr:${group.getAttrVos()}">
+                                        <dt th:text="${attr.getAttrName()}">品牌</dt>
+                                        <dd th:text="${attr.getAttrValues()}">华为(HUAWEI)</dd>
+                                    </dl>
+                                </div>
+
+                                <div class="package-list">
+                                    <h3>包装清单</h3>
+                                    <p>手机（含内置电池） X 1、5A大电流华为SuperCharge充电器X 1、5A USB数据线 X 1、半入耳式线控耳机 X 1、快速指南X 1、三包凭证 X
+                                        1、取卡针 X 1、保护壳 X 1</p>
+                                </div>
+                            </div>
+                            <img class="xiaoguo" th:src="${desc}"
+                                 th:each=" desc:${#strings.listSplit(item.getSpuInfoDesc().getDecript(),',')}"/>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="ng-promise-box">
+        <div class="ng-promise">
+            <p class="text">
+                <a href="javascript:;" class="icon1">7天无理由退换货</a>
+                <a href="javascript:;" class="icon2">满99元全场免邮</a>
+                <a href="javascript:;" class="icon3" style="margin-right: 0px;">100%品质保证</a>
+            </p>
+        </div>
+    </div>
+    <div class="mod_help">
+        <p>
+            <a href="http://mall-yeye.com" class="router-link-exact-active router-link-active">首页</a>
+            <span>|</span>
+            <a href="http://search.mall-yeye.com/list.html" class="">全部商品</a>
+            <span>|</span>
+            <a href="http://mall-yeye.com" class="">官网</a>
+        </p>
+        <p class="coty">商城版权归shopee所有 © 2022-2023</p></div>
+</div>
+
+
+</body>
+
+<script src="/static/item/js/jquery1.9.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/item/js/js.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    //  sku跳转实现
+    $(".sku_attr_val").click(function () {
+        var skus = new Array();
+        $(this).addClass("clicked");
+        var curr = $(this).attr("skus").split(",");
+        skus.push(curr);
+        $(this).parent().parent().find(".sku_attr_val").removeClass("checked");
+
+        $("a[class='sku_attr_val checked']").each(function () {
+            skus.push($(this).attr("skus").split(","));
+        });
+
+        for (let i = 1; i < skus.length; i++) {
+            curr = $(curr).filter(skus[i]);
+        }
+        location.href = "http://item.mall-yeye.com/" + curr[0] + ".html"
+
+    });
+
+    $(function () {
+        $("a[class='sku_attr_val checked']").parent().css({"border": "solid 1px red"});
+    });
+
+    $("#addToCartA").click(function () {
+        let skuId = $(this).attr("skuId");
+        let val = $("#numberInput").val();
+        location.href = "http://cart.mall-yeye.com/addToCart?skuId=" + skuId + "&num=" + val;
+
+        return false;
+    });
+    $("#seckillA").click(function () {
+        var isLogin = [[${session.loginUser != null}]];     //true
+
+        if (isLogin) {
+            let skuId = $(this).attr("skuId");
+            let sessionId = $(this).attr("sessionId");
+            let id = sessionId + "_" + skuId;
+
+            let randomCode = $(this).attr("randomCode");
+            let val = $("#numberInput").val();
+            location.href = "http://seckill.mall-yeye.com/kill?id=" + id
+                + "&num=" + val
+                + "&randomCode=" + randomCode;
+        } else {
+            alert("秒杀请先登录");
+        }
+        return false;
+    });
+
+</script>
+
+</html>

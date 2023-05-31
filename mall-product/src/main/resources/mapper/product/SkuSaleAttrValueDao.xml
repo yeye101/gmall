@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yeye.mall.product.dao.SkuSaleAttrValueDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yeye.mall.product.entity.SkuSaleAttrValueEntity" id="skuSaleAttrValueMap">
+        <result property="id" column="id"/>
+        <result property="skuId" column="sku_id"/>
+        <result property="attrId" column="attr_id"/>
+        <result property="attrName" column="attr_name"/>
+        <result property="attrValue" column="attr_value"/>
+        <result property="attrSort" column="attr_sort"/>
+    </resultMap>
+
+    <resultMap id="skuItemSaleAttrsVo" type="com.yeye.mall.product.vo.web.SkuItemSaleAttrsVo">
+        <result column="attr_id" property="attrId"></result>
+        <result column="attr_name" property="attrName"></result>
+        <collection property="attrValues" ofType="com.yeye.mall.product.vo.web.SkuSaleAttrWithIdVo">
+            <result column="attr_value" property="attrValues"></result>
+            <result column="sku_id" property="skuIds"></result>
+        </collection>
+    </resultMap>
+    <select id="getSaleAttrsVoBySId" resultMap="skuItemSaleAttrsVo">
+        SELECT
+            ssav.attr_id,
+            ssav.attr_name,
+            ssav.attr_value  attr_value ,
+            GROUP_CONCAT( DISTINCT si.sku_id )  sku_id
+        FROM
+            pms_sku_info si
+                LEFT JOIN pms_sku_sale_attr_value ssav ON si.sku_id = ssav.sku_id
+        WHERE
+            si.spu_id = #{spuId}
+        GROUP BY
+            ssav.attr_id,
+            ssav.attr_name,
+            ssav.attr_value;
+    </select>
+
+
+</mapper>

@@ -1,0 +1,65 @@
+POST http://localhost:88/api/product/spuinfo/save
+Content-Type: application/json
+
+{"spuName":"Redmi K40 至尊版","spuDescription":"Redmi K40 至尊版 骁龙8+旗舰处理器 1亿像素光学防抖 120W+5000mAh 12GB+256GB 雅黑 小米红米K50 Ultra","catalogId":225,"brandId":10,"weight":0.8,"publishStatus":0,"decript":["https://yeye-mall.oss-cn-hangzhou.aliyuncs.com/2022-11-16fcfc05ee-33c8-463b-8365-9941623b05f5_xiaomi.png"],"images":["https://yeye-mall.oss-cn-hangzhou.aliyuncs.com/2022-11-16407a22cc-688b-4b0f-8eab-7caac8608641_xiaomi.png","https://yeye-mall.oss-cn-hangzhou.aliyuncs.com/2022-11-16f357459b-9ffb-4c16-886a-42140d2865fe_fe215589ed6500f4.jpg"],"bounds":{"buyBounds":1000,"growBounds":1000},"baseAttrs":[{"attrId":7,"attrValues":"A2217","showDesc":0},{"attrId":8,"attrValues":"2022","showDesc":0},{"attrId":11,"attrValues":"黑色","showDesc":1},{"attrId":13,"attrValues":"158.3","showDesc":0},{"attrId":14,"attrValues":"以官网信息为准","showDesc":0},{"attrId":24,"attrValues":"测试","showDesc":0},{"attrId":15,"attrValues":"高通(Qualcomm)","showDesc":1},{"attrId":16,"attrValues":"骁龙8+ Gen 1","showDesc":0}],"skus":[{"attr":[{"attrId":9,"attrName":"颜色","attrValue":"黑色"},{"attrId":12,"attrName":"版本","attrValue":"8+128"}],"skuName":"Redmi K50 至尊版 黑色 8+128","price":"2999","skuTitle":"Redmi K50 至尊版 骁龙8+旗舰处理器 1亿像素光学防抖 120W+5000mAh 12GB+256GB 雅黑 小米红米K50 Ultra","skuSubtitle":"骁龙8+，1.5K旗舰直屏，一亿像素光学防抖相机!【Note12Pro火热抢购中】","images":[{"imgUrl":"https://yeye-mall.oss-cn-hangzhou.aliyuncs.com/2022-11-16407a22cc-688b-4b0f-8eab-7caac8608641_xiaomi.png","defaultImg":1},{"imgUrl":"https://yeye-mall.oss-cn-hangzhou.aliyuncs.com/2022-11-16f357459b-9ffb-4c16-886a-42140d2865fe_fe215589ed6500f4.jpg","defaultImg":0}],"descar":["黑色","8+128"],"fullCount":10,"discount":0.98,"countStatus":1,"fullPrice":10000,"reducePrice":100,"priceStatus":1,"memberPrice":[{"id":2,"name":"铜牌会员","price":2900},{"id":3,"name":"银牌会员","price":2899},{"id":4,"name":"金牌会员","price":2799}]},{"attr":[{"attrId":9,"attrName":"颜色","attrValue":"黑色"},{"attrId":12,"attrName":"版本","attrValue":"8+256"}],"skuName":"Redmi K50 至尊版 黑色 8+256","price":"3099","skuTitle":"Redmi K50 至尊版 骁龙8+旗舰处理器 1亿像素光学防抖 120W+5000mAh 12GB+256GB 雅黑 小米红米K50 Ultra","skuSubtitle":"骁龙8+，1.5K旗舰直屏，一亿像素光学防抖相机!【Note12Pro火热抢购中】","images":[{"imgUrl":"https://yeye-mall.oss-cn-hangzhou.aliyuncs.com/2022-11-16407a22cc-688b-4b0f-8eab-7caac8608641_xiaomi.png","defaultImg":1},{"imgUrl":"https://yeye-mall.oss-cn-hangzhou.aliyuncs.com/2022-11-16f357459b-9ffb-4c16-886a-42140d2865fe_fe215589ed6500f4.jpg","defaultImg":0}],"descar":["黑色","8+256"],"fullCount":0,"discount":0,"countStatus":0,"fullPrice":0,"reducePrice":0,"priceStatus":0,"memberPrice":[{"id":2,"name":"铜牌会员","price":0},{"id":3,"name":"银牌会员","price":0},{"id":4,"name":"金牌会员","price":0}]},{"attr":[{"attrId":9,"attrName":"颜色","attrValue":"黑色"},{"attrId":12,"attrName":"版本","attrValue":"12+256"}],"skuName":"Redmi K50 至尊版 黑色 12+256","price":"3399","skuTitle":"Redmi K50 至尊版 骁龙8+旗舰处理器 1亿像素光学防抖 120W+5000mAh 12GB+256GB 雅黑 小米红米K50 Ultra","skuSubtitle":"骁龙8+，1.5K旗舰直屏，一亿像素光学防抖相机!【Note12Pro火热抢购中】","images":[{"imgUrl":"https://yeye-mall.oss-cn-hangzhou.aliyuncs.com/2022-11-16407a22cc-688b-4b0f-8eab-7caac8608641_xiaomi.png","defaultImg":1},{"imgUrl":"","defaultImg":0}],"descar":["黑色","12+256"],"fullCount":0,"discount":0,"countStatus":0,"fullPrice":0,"reducePrice":0,"priceStatus":0,"memberPrice":[{"id":2,"name":"铜牌会员","price":0},{"id":3,"name":"银牌会员","price":0},{"id":4,"name":"金牌会员","price":0}]},{"attr":[{"attrId":9,"attrName":"颜色","attrValue":"黑色"},{"attrId":12,"attrName":"版本","attrValue":"8+512"}],"skuName":"Redmi K50 至尊版 黑色 8+512","price":"3299","skuTitle":"Redmi K50 至尊版 骁龙8+旗舰处理器 1亿像素光学防抖 120W+5000mAh 12GB+256GB 雅黑 小米红米K50 Ultra","skuSubtitle":"骁龙8+，1.5K旗舰直屏，一亿像素光学防抖相机!【Note12Pro火热抢购中】","images":[{"imgUrl":"https://yeye-mall.oss-cn-hangzhou.aliyuncs.com/2022-11-16407a22cc-688b-4b0f-8eab-7caac8608641_xiaomi.png","defaultImg":1},{"imgUrl":"","defaultImg":0}],"descar":["黑色","8+512"],"fullCount":0,"discount":0,"countStatus":0,"fullPrice":0,"reducePrice":0,"priceStatus":0,"memberPrice":[{"id":2,"name":"铜牌会员","price":0},{"id":3,"name":"银牌会员","price":0},{"id":4,"name":"金牌会员","price":0}]},{"attr":[{"attrId":9,"attrName":"颜色","attrValue":"黑色"},{"attrId":12,"attrName":"版本","attrValue":"12+512"}],"skuName":"Redmi K50 至尊版 黑色 12+512","price":"3699","skuTitle":"Redmi K50 至尊版 骁龙8+旗舰处理器 1亿像素光学防抖 120W+5000mAh 12GB+256GB 雅黑 小米红米K50 Ultra","skuSubtitle":"骁龙8+，1.5K旗舰直屏，一亿像素光学防抖相机!【Note12Pro火热抢购中】","images":[{"imgUrl":"https://yeye-mall.oss-cn-hangzhou.aliyuncs.com/2022-11-16407a22cc-688b-4b0f-8eab-7caac8608641_xiaomi.png","defaultImg":1},{"imgUrl":"","defaultImg":0}],"descar":["黑色","12+512"],"fullCount":0,"discount":0,"countStatus":0,"fullPrice":0,"reducePrice":0,"priceStatus":0,"memberPrice":[{"id":2,"name":"铜牌会员","price":0},{"id":3,"name":"银牌会员","price":0},{"id":4,"name":"金牌会员","price":0}]},{"attr":[{"attrId":9,"attrName":"颜色","attrValue":"白色"},{"attrId":12,"attrName":"版本","attrValue":"8+128"}],"skuName":"Redmi K50 至尊版 白色 8+128","price":"2999","skuTitle":"Redmi K50 至尊版 骁龙8+旗舰处理器 1亿像素光学防抖 120W+5000mAh 12GB+256GB 雅黑 小米红米K50 Ultra","skuSubtitle":"骁龙8+，1.5K旗舰直屏，一亿像素光学防抖相机!【Note12Pro火热抢购中】","images":[{"imgUrl":"https://yeye-mall.oss-cn-hangzhou.aliyuncs.com/2022-11-16407a22cc-688b-4b0f-8eab-7caac8608641_xiaomi.png","defaultImg":1},{"imgUrl":"","defaultImg":0}],"descar":["白色","8+128"],"fullCount":0,"discount":0,"countStatus":0,"fullPrice":0,"reducePrice":0,"priceStatus":0,"memberPrice":[{"id":2,"name":"铜牌会员","price":0},{"id":3,"name":"银牌会员","price":0},{"id":4,"name":"金牌会员","price":0}]},{"attr":[{"attrId":9,"attrName":"颜色","attrValue":"白色"},{"attrId":12,"attrName":"版本","attrValue":"8+256"}],"skuName":"Redmi K50 至尊版 白色 8+256","price":"3099","skuTitle":"Redmi K50 至尊版 骁龙8+旗舰处理器 1亿像素光学防抖 120W+5000mAh 12GB+256GB 雅黑 小米红米K50 Ultra","skuSubtitle":"骁龙8+，1.5K旗舰直屏，一亿像素光学防抖相机!【Note12Pro火热抢购中】","images":[{"imgUrl":"https://yeye-mall.oss-cn-hangzhou.aliyuncs.com/2022-11-16407a22cc-688b-4b0f-8eab-7caac8608641_xiaomi.png","defaultImg":1},{"imgUrl":"","defaultImg":0}],"descar":["白色","8+256"],"fullCount":0,"discount":0,"countStatus":0,"fullPrice":0,"reducePrice":0,"priceStatus":0,"memberPrice":[{"id":2,"name":"铜牌会员","price":0},{"id":3,"name":"银牌会员","price":0},{"id":4,"name":"金牌会员","price":0}]},{"attr":[{"attrId":9,"attrName":"颜色","attrValue":"白色"},{"attrId":12,"attrName":"版本","attrValue":"12+256"}],"skuName":"Redmi K50 至尊版 白色 12+256","price":"3399","skuTitle":"Redmi K50 至尊版 骁龙8+旗舰处理器 1亿像素光学防抖 120W+5000mAh 12GB+256GB 雅黑 小米红米K50 Ultra","skuSubtitle":"骁龙8+，1.5K旗舰直屏，一亿像素光学防抖相机!【Note12Pro火热抢购中】","images":[{"imgUrl":"https://yeye-mall.oss-cn-hangzhou.aliyuncs.com/2022-11-16407a22cc-688b-4b0f-8eab-7caac8608641_xiaomi.png","defaultImg":1},{"imgUrl":"","defaultImg":0}],"descar":["白色","12+256"],"fullCount":0,"discount":0,"countStatus":0,"fullPrice":0,"reducePrice":0,"priceStatus":0,"memberPrice":[{"id":2,"name":"铜牌会员","price":0},{"id":3,"name":"银牌会员","price":0},{"id":4,"name":"金牌会员","price":0}]},{"attr":[{"attrId":9,"attrName":"颜色","attrValue":"白色"},{"attrId":12,"attrName":"版本","attrValue":"8+512"}],"skuName":"Redmi K50 至尊版 白色 8+512","price":"3299","skuTitle":"Redmi K50 至尊版 骁龙8+旗舰处理器 1亿像素光学防抖 120W+5000mAh 12GB+256GB 雅黑 小米红米K50 Ultra","skuSubtitle":"骁龙8+，1.5K旗舰直屏，一亿像素光学防抖相机!【Note12Pro火热抢购中】","images":[{"imgUrl":"https://yeye-mall.oss-cn-hangzhou.aliyuncs.com/2022-11-16407a22cc-688b-4b0f-8eab-7caac8608641_xiaomi.png","defaultImg":1},{"imgUrl":"","defaultImg":0}],"descar":["白色","8+512"],"fullCount":0,"discount":0,"countStatus":0,"fullPrice":0,"reducePrice":0,"priceStatus":0,"memberPrice":[{"id":2,"name":"铜牌会员","price":0},{"id":3,"name":"银牌会员","price":0},{"id":4,"name":"金牌会员","price":0}]},{"attr":[{"attrId":9,"attrName":"颜色","attrValue":"白色"},{"attrId":12,"attrName":"版本","attrValue":"12+512"}],"skuName":"Redmi K50 至尊版 白色 12+512","price":"3399","skuTitle":"Redmi K50 至尊版 骁龙8+旗舰处理器 1亿像素光学防抖 120W+5000mAh 12GB+256GB 雅黑 小米红米K50 Ultra","skuSubtitle":"骁龙8+，1.5K旗舰直屏，一亿像素光学防抖相机!【Note12Pro火热抢购中】","images":[{"imgUrl":"https://yeye-mall.oss-cn-hangzhou.aliyuncs.com/2022-11-16407a22cc-688b-4b0f-8eab-7caac8608641_xiaomi.png","defaultImg":1},{"imgUrl":"","defaultImg":0}],"descar":["白色","12+512"],"fullCount":10,"discount":0.95,"countStatus":1,"fullPrice":10000,"reducePrice":100,"priceStatus":1,"memberPrice":[{"id":2,"name":"铜牌会员","price":3300},{"id":3,"name":"银牌会员","price":3299},{"id":4,"name":"金牌会员","price":3200}]}]}
+
+###
+
+POST http://localhost:7000/coupon/skufullreduction/saveinfo
+Content-Type: application/json
+
+{
+  "skuId":10,
+  "fullCount":0,
+  "discount":0,
+  "countStatus":0,
+  "fullPrice":0,
+  "reducePrice":0,
+  "priceStatus":0,
+  "memberPrice":[
+    {
+      "id":2,
+      "name":"铜牌会员",
+      "price":0
+    },
+    {
+      "id":3,
+      "name":"银牌会员",
+      "price":0
+    },
+    {
+      "id":4,
+      "name":"金牌会员",
+      "price":0
+    }
+  ]
+}
+###
+
+
+
+POST http://localhost:88/api/ware/purchase/received
+Content-Type: application/json
+
+[10]
+
+
+###//    领取采购单
+
+POST http://localhost:88/api/ware/purchase/done
+Content-Type: application/json
+
+{
+  "id": 12,
+  "items": [
+    {
+      "itemId": 16,
+      "status": 3,
+      "reason": ""
+    }
+  ]
+}
+
+
+
+###//    完成采购

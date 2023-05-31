@@ -1,0 +1,49 @@
+## 应用名称
+#spring:
+#  application:
+#    name: mall-seckill
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848 #todo 写自己的nacos
+#  redis:
+#    host: 127.0.0.1 #todo 写自己的redis地址
+#    port: 6379
+#    password:  #todo 写自己的redis密码，没有不写
+#  session:
+#    store-type: redis
+#  task:
+#    execution:
+#      pool:
+#        core-size: 5
+#        max-size: 25
+#  rabbitmq:
+#    host: 127.0.0.1 #todo 写自己的rabbitmq地址
+#    username: guest
+#    password: guest
+#    port: 5672
+#    virtual-host: /
+#    # 到达确认
+#    publisher-confirms: true
+#    # 到达queue确认
+#    publisher-returns: true
+#    # 异步确认
+#    template:
+#      mandatory: true
+#    # 手动确认消息消费
+#    listener:
+#      simple:
+#        acknowledge-mode: manual
+#  jackson:
+#    time-zone: GMT+8
+#    date-format: yyyy-MM-dd HH:mm:ss
+#  thymeleaf:
+#    cache: false
+#server:
+#  port: 25000
+#feign:
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 60000
+#        readTimeout: 60000

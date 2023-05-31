@@ -1,0 +1,76 @@
+此文件为添加docker容器的命令
+
+
+#部署nacos
+
+docker run -d \
+--name nacos \
+-p 8848:8848 \
+--restart=always \
+-e JVM_XMS=256m \
+-e JVM_XMX=256m \
+-e MODE=standalone \
+-v /mydata/nacos/logs:/home/nacos/logs \
+-v /mydata/nacos/conf/application.properties:/home/nacos/conf/application.properties \
+nacos/nacos-server
+
+
+#部署redis
+docker run -p 6379:6379 --name redis \
+-v /mydata/redis/data:/data  \
+-v /mydata/redis/conf/redis.conf:/etc/redis/redis.conf \
+-d redis redis-server /etc/redis/redis.conf
+
+docker restart redis
+#启动redis客户端
+docker exec -it redis redis-cli
+
+USE mall_wms;
+TRUNCATE wms_ware_order_task_detail;
+TRUNCATE wms_ware_order_task;
+USE mall_oms;
+TRUNCATE `oms_order_item`;
+TRUNCATE oms_order;
+
+
+truncate pms_sku_info;
+truncate pms_spu_info;
+truncate pms_spu_info_desc;
+truncate pms_spu_images;
+truncate pms_product_attr_value;
+truncate mall_sms.sms_spu_bounds;
+truncate pms_sku_images;
+truncate pms_sku_sale_attr_value;
+truncate mall_sms.sms_sku_ladder;
+truncate mall_sms.sms_sku_full_reduction;
+truncate mall_sms.sms_member_price;
+
+
+
+chmod -R 777 /mydata/elasticsearch/
+docker run --name elasticsearch -p 9200:9200 -p 9300:9300 \
+-e "discovery.type=single-node" \
+-e ES_JAVA_OPTS="-Xms64m -Xmx512m" \
+-v /mydata/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \
+-v /mydata/elasticsearch/data:/usr/share/elasticsearch/data \
+-v /mydata/elasticsearch/plugins:/usr/share/elasticsearch/plugins \
+-d elasticsearch:7.4.2
+
+
+docker run --name kibana -e ELASTICSEARCH_HOSTS=http://10.0.4.16:9200 -p 5601:5601 \
+-d kibana:7.4.2
+
+
+
+docker run -p 80:80 --name nginx \
+-v /mydata/nginx/html:/usr/share/nginx/html \
+-v /mydata/nginx/logs:/var/log/nginx \
+-v /mydata/nginx/conf:/etc/nginx \
+-d nginx:1.10
+
+// rabbitmq的docker镜像
+docker run -d --name rabbitmq -p 5671:5671 -p 5672:5672 -p 4369:4369 -p 25672:25672 -p 15671:15671 -p 15672:15672 rabbitmq:management
+
+docker update  rabbitmq  --restart=always
+
+

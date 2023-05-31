@@ -1,0 +1,24 @@
+## 应用名称
+#spring.application.name: mall-thirdparty
+#  # 应用服务 WEB 访问端口
+#server.port: 30000
+#spring:
+#  cloud:
+#    alicloud:
+#      access-key: xxxx #todo 写自己的alicloud存储
+#      secret-key: xxxx #todo 写自己的alicloud存储
+#
+#oss:
+#  endpoint: oss-cn-hangzhou.aliyuncs.com
+#  bucket: xxxx #todo 写自己的alicloud存储
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848 #todo 写自己的nacos
+#
+#sms:
+#  config:
+#    host: https://gyytz.market.alicloudapi.com #todo 写自己的短信地址
+#    appcode: xxxx #todo 写自己的短信地址
+#    path: /sms/smsSend
+#    sms-sign-id: xxxx #todo 写自己的短信地址
+#    template-id: xxxx #todo 写自己的短信地址

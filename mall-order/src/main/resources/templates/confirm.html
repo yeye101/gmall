@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <script src="/static/order/confirm/js/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/order/confirm/css/JD2.css"/>
+
+    <title></title>
+</head>
+
+<body>
+<!--顶部-->
+<header>
+    <div class="header">
+        <ul class="header-left">
+            <li>
+                <img src="/static/order/confirm/img/header_1.png"/>
+                <a href="http://mall-yeye.com/">商城首页</a>
+            </li>
+
+        </ul>
+        <ul class="header-right">
+            <li style="width: 100px">
+                <a href="http://auth.mall-yeye.com/login.html"
+                   th:if="${session.loginUser == null}">
+                    你好，请登录</a>
+                <a href="http://member.mall-yeye.com/memberInfo.html"
+                   th:if="${session.loginUser != null}"
+                   th:text="${'你好，'+session.loginUser.nickname}">
+                    你好，请登录</a>
+                <input id="userId" class="hide" th:if="${session.loginUser != null}"
+                     th:value="${session.loginUser.id}">
+            </li>
+            <li th:if="${session.loginUser == null}">
+                <a href="http://auth.mall-yeye.com/reg.html" class="li_2">免费注册</a>
+            </li>
+
+            <li>|</li>
+            <li class="spacer"></li>
+            <li>
+                <a href="http://member.mall-yeye.com/memberOrderList.html">我的订单</a>
+            </li>
+
+        </ul>
+        <div style="clear: both;"></div>
+    </div>
+
+
+</header>
+
+<!--logo图片-->
+<div class="top-1">
+    <img src="/static/logo.png" class="img1"/><span>结算页</span>
+</div>
+
+
+<p class="p1">填写并核对订单信息 <span style="color: red" th:if="${errorMsg!=null}" th:text="${errorMsg}"></span></p>
+<div class="section">
+    <!--收货人信息 orderConfirmData-->
+    <div class="top-2">
+        <span>收货人信息</span>
+        <span onclick="addAddress()">新增收货地址</span>
+    </div>
+
+    <!--地址-->
+    <div class="top-3 addr-item" th:each="addr:${orderConfirmData.getAddressVos()}">
+        <p th:attr="def=${addr.getDefaultStatus()},addrId=${addr.getId()}" th:text="${addr.getName()}">--</p>
+        <span th:text="${addr.getName()}+'  '+  ${addr.getProvince()}+'  '+ ${addr.getDetailAddress()} +'  '+ ${addr.getPhone()}">--</span>
+    </div>
+
+    <p class="p2">更多地址︾</p>
+    <div class="hh1"/>
+</div>
+
+<div class="modal-alert hide">
+    <div class="cen"></div>
+    <div class="modal-alert-content">
+        新增地址
+        <div class="close">×</div>
+        <div class="register-box">
+            <label class="name_label">
+                <span>用 户 昵 称</span>
+                <input id="nickName" maxlength="20" type="text" placeholder="用 户 昵 称 长度1-20之间">
+            </label>
+        </div>
+        <div class="register-box">
+            <label class="name_label">
+                <span>用 户 电 话</span>
+                <input id="phone" maxlength="20" type="text" placeholder="用 户 电 话 11位">
+            </label>
+        </div>
+        <div class="register-box">
+            <label class="name_label">
+                <span>省    份</span>
+                <input id="province" maxlength="20" type="text" placeholder="省    份 长度1-20之间">
+            </label>
+        </div>
+        <div class="register-box">
+            <label class="name_label">
+                <span>详细地址信息</span>
+                <input id="addressDetail" maxlength="20" type="text" placeholder="详细地址信息 长度1-20之间">
+            </label>
+        </div>
+        <div class="dialog-footer">
+            <input type="button" class="btn" id="confirm" value="确认"/>
+            <input type="button" class="btn ml50" id="cancel" value="取消"/>
+        </div>
+    </div>
+</div>
+
+<!--支付方式-->
+<h4 class="h4">支付方式</h4>
+
+<div class="top-6">
+    <p>在线支付</p>
+</div>
+<div class="hh1"></div>
+<!--送货清单-->
+<h4 class="h4" style="margin-top: 5px;">商品清单</h4>
+<div class="top_1">
+    <div class="to_right">
+        <div class="yun1" th:each="item:${orderConfirmData.orderItemVos}">
+            <img th:src="${item.getImage()}" class="yun"/>
+            <div class="mi">
+                <p>[[${item.getTitle()}]]
+                    <span style="color: red;" th:text="'¥'+${#numbers.formatDecimal(item.getTotalPrice(),3,2)}"> ￥ 149.00</span>
+                    <span th:text="'x'+${item.getCount()}"> x1 </span>
+                    <span th:text="${item.getStock() ?'有货':'无货' }">有货</span>
+                </p>
+                <p><span>0.095kg</span></p>
+                <p class="tui-1"><img src="/static/order/confirm/img/i_07.png"/>支持7天无理由退货</p>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div class="bto">
+
+    <div class="hh3"></div>
+    <h4 class="clear">使用优惠/礼品卡/抵用 ^</h4>
+
+</div>
+<div class="xia">
+    <div class="qian">
+        <p class="qian_y">
+            <span th:text="${orderConfirmData.getOrderItemCount()}">--</span>
+            <span>件商品，总商品金额：</span>
+            <span class="rmb" th:text="${'¥'+#numbers.formatDecimal(orderConfirmData.getTotal(),3,2)}">￥28.90</span>
+        </p>
+        <p class="qian_y">
+            <span>返现：</span>
+            <span class="rmb">  -￥0.00</span>
+        </p>
+        <p class="qian_y">
+            <span>运费： </span>
+            <span class="rmb"> &nbsp ￥<b id="fareEle"></b></span>
+        </p>
+        <p class="qian_y">
+            <span>服务费： </span>
+            <span class="rmb"> &nbsp ￥0.00</span>
+        </p>
+        <p class="qian_y">
+            <span>退换无忧： </span>
+            <span class="rmb"> &nbsp ￥0.00</span>
+        </p>
+
+    </div>
+
+    <div class="yfze">
+        <p class="yfze_a"><span class="z">应付总额：</span>
+            <span class="hq" id="payPriceEle"
+                  th:text="${'¥'+#numbers.formatDecimal(orderConfirmData.getPayPrice(),3,2)}">--</span>
+        </p>
+        <p class="yfze_b">寄送至：<span id="recieveAddress"></span> 收货人：<span id="recieveMember"></span></p>
+    </div>
+    <form action="http://order.mall-yeye.com/submitOrder" method="post">
+        <input id="addrId" name="addrId" type="hidden"/>
+        <input id="payType" name="payType" type="hidden"/>
+        <input id="payPrice" name="payPrice" type="hidden"/>
+        <input name="orderToken" th:value="${orderConfirmData.getOrderToken()}" type="hidden"/>
+        <button class="tijiao" type="submit">提交订单</button>
+    </form>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.header-right li:nth-of-type(6)').hover(function () {
+            $('.header-r-11').css('display', 'block')
+        }, function () {
+            $('.header-r-11').css('display', 'none')
+        })
+        $('.header-right li:nth-of-type(12)').hover(function () {
+            $('.header-r-2').css('display', 'block')
+        }, function () {
+            $('.header-r-2').css('display', 'none')
+        })
+        $('.header-right li:nth-of-type(14)').hover(function () {
+            $('.header-r-3').css('display', 'block')
+        }, function () {
+            $('.header-r-3').css('display', 'none')
+        })
+        $('.header-l-2').hover(function () {
+            $('.header-l-d').css('display', 'block')
+        }, function () {
+            $('.header-l-d').css('display', 'none')
+        })
+        $('.header-r-4').hover(function () {
+            $('.h-r-1').css('display', 'block')
+        }, function () {
+            $('.h-r-1').css('display', 'none')
+        })
+        highLight();
+        let addrId = $(".addr-item p[def='1']").attr("addrId");
+        getFare(addrId);
+    })
+
+    // highLight
+    function highLight() {
+        $(".addr-item p").css({"border": "2px solid gray"});
+        $(".addr-item p[def='1']").css({"border": "2px solid red"});
+
+    }
+
+    $(".addr-item p").click(function () {
+        $(".addr-item p").attr("def", "0");
+        $(this).attr("def", "1");
+        highLight();
+
+        let addrId = $(this).attr("addrId");
+        getFare(addrId);
+    })
+
+    function getFare(addrId) {
+        // 回填表单地址
+        $("#addrId").val(addrId);
+        $.ajax
+        ({
+            url: "http://mall-yeye.com/api/ware/wareinfo/getFare",
+            dataType: "json",
+            type: "get",
+            data: {
+                addrId: addrId
+            },
+            success: function (res) {
+                $("#fareEle").text(res.data.fare);
+
+                var payTotal = [[${orderConfirmData.getPayPrice()}]];
+                var payTotalPrice = res.data.fare * 1 + payTotal * 1;
+
+                $("#payPrice").val(payTotalPrice)
+                $("#payPriceEle").text(payTotalPrice);
+
+                $("#recieveAddress").text(res.data.addressVo.province + "  " + res.data.addressVo.detailAddress);
+                $("#recieveMember").text(res.data.addressVo.name + "  " + res.data.addressVo.phone);
+
+                console.log(res);
+            },
+            error: function () {
+                alert('地址为空');
+            },
+        });
+    }
+
+    function addAddress() {
+        $('.modal-alert').removeClass('hide').addClass('show')
+    }
+
+    $('.cen').click(function () {
+        $('.modal-alert').addClass('hide')
+    })
+    $('.close').click(function () {
+        $('.modal-alert').addClass('hide')
+    })
+    // 确定按钮
+    $('#confirm').click(function () {
+        $('.modal-alert').addClass('hide')
+        yesCallback();
+    });
+    // 取消按钮
+    $('#cancel').click(function () {
+        $('.modal-alert').addClass('hide')
+        // noCallback();
+    });
+
+    function yesCallback() {
+
+
+        let data = {
+            userId: $('#userId').val(),
+            name: $('#nickName').val(),
+            phone: $('#phone').val(),
+            province: $('#province').val(),
+            address: $('#addressDetail').val()
+        };
+        $.ajax({
+            url: "http://localhost:88/api/member/address/save",
+            dataType: "json",
+            type: "post",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify(data),
+            success: function (res) {
+                console.log(res);
+                location.reload();
+
+            },
+            error: function (res) {
+                console.log(res);
+                alert("参数格式不正确");
+            },
+        });
+
+
+    }
+
+
+</script>
+</body>
+
+</html>
